@@ -1,9 +1,7 @@
 # Import libraries
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
 import PyPDF2, io, requests
-import pycountry
 import re
 
 
@@ -32,7 +30,7 @@ if __name__ == "__main__":
 
     fullURL = "http://research.ics.aalto.fi/cog/data/udhr/"
 
-    dict = {}
+    myDict = {}
     i = 0
 
     for a in hrefs:
@@ -40,7 +38,7 @@ if __name__ == "__main__":
         pdf_file = io.BytesIO(response.content)  # response being a requests Response object
         pdf_reader = PyPDF2.PdfFileReader(pdf_file)
         num_pages = pdf_reader.numPages
-        dict[names[i]] = num_pages
+        myDict[names[i]] = num_pages
         i += 1
 
-    print(sorted(dict.items(), key=lambda item: item[1]))
+    print(sorted(myDict.items(), key=lambda item: item[1]))
